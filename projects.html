@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Jagan M</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-color: #06080d;
+      --bg-gradient: linear-gradient(135deg, #06080d 0%, #0a1128 100%);
+      --text-main: #f0f4f8;
+      --text-muted: #8b9bb4;
+      --accent: #FF7A00;
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --font-sans: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+    }
+
+    /* BACKGROUND GRID PATTERN */
+    .bg-grid {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(6, 8, 13, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .nav-logo {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+    }
+
+    /* PAGE CONTAINER */
+    .page-container {
+      position: relative;
+      z-index: 10;
+      padding: 120px 5vw 5vw 5vw;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(40px, 5vw, 70px);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px rgba(255,122,0,0.1);
+    }
+    .section-subtitle {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* PROJECT GRIDS */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 6rem;
+    }
+
+    .project-card {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: rgba(255,122,0,0.5);
+      background: rgba(10, 12, 16, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 30px rgba(255,122,0,0.1);
+    }
+
+    .project-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .project-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .tech-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--accent);
+      border: 1px solid rgba(255,122,0,0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      background: transparent;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 0.2rem;
+      align-self: flex-start;
+      transition: all 0.3s;
+    }
+    .project-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--glass-border);
+      padding: 2rem 5vw;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      background: rgba(6, 8, 13, 0.8);
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="bg-grid"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">JAGAN<span>.AI</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    
+    <!-- SECTION 1: HEADER / HERO -->
+    <div class="section-header">
+      <div class="section-eyebrow">/ PORTFOLIO ARCHIVE</div>
+      <h1 class="section-title">ALL PROJECTS</h1>
+      <p class="section-subtitle">A comprehensive archive of my work spanning Autonomous AI Systems, Computer Vision, RAG architectures, and Intelligent Automation.</p>
+    </div>
+
+    <!-- SECTION 2: AUTONOMOUS & AI SYSTEMS -->
+    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+      <h2 class="section-title" style="font-size: 30px;">01. AUTONOMOUS &amp; LLM SYSTEMS</h2>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3 class="project-title">Jagan AI — Autonomous Assistant</h3>
+        <p class="project-desc">An autonomous AI engineering assistant designed to understand tasks, plan workflows, use tools, maintain context, assist with coding, and execute approved actions.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Agentic AI</span>
+          <span class="tech-pill">Task Planning</span>
+          <span class="tech-pill">Tool Calling</span>
+        </div>
+        <a href="https://github.com/jaganbuilds/jagan-autonomous-ai-engineer-assistant" target="_blank" class="project-link">VIEW PROJECT &rarr;</a>
+      </div>
+
+      <div class="project-card">
+        <h3 class="project-title">Multi-PDF RAG Assistant</h3>
+        <p class="project-desc">An intelligent document assistant that processes multiple PDFs and provides context-aware answers using retrieval-augmented generation and vector search.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Gemini</span>
+          <span class="tech-pill">FAISS</span>
+          <span class="tech-pill">RAG</span>
+        </div>
+        <a href="#" target="_blank" class="project-link">VIEW PROJECT &rarr;</a>
+      </div>
+    </div>
+
+    <!-- SECTION 3: COMPUTER VISION -->
+    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+      <h2 class="section-title" style="font-size: 30px;">02. COMPUTER VISION &amp; PERCEPTION</h2>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3 class="project-title">Sign Language Translator</h3>
+        <p class="project-desc">A computer vision-based communication system that translates sign language into text and voice, with speech-to-text support for bi-directional communication.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">OpenCV</span>
+          <span class="tech-pill">Computer Vision</span>
+        </div>
+        <a href="https://github.com/jaganbuilds/Bi_Directional__SignLanguage_Translator_voice_output" target="_blank" class="project-link">VIEW PROJECT &rarr;</a>
+      </div>
+
+      <div class="project-card">
+        <h3 class="project-title">Real-Time Object Detection</h3>
+        <p class="project-desc">High-speed object detection pipeline optimized for edge deployment using state-of-the-art YOLO architectures and hardware acceleration.</p>
+        <div class="project-tech">
+          <span class="tech-pill">PyTorch</span>
+          <span class="tech-pill">YOLO</span>
+          <span class="tech-pill">Edge AI</span>
+        </div>
+        <a href="#" class="project-link">VIEW PROJECT &rarr;</a>
+      </div>
+    </div>
+
+    <!-- SECTION 4: DATA & AUTOMATION -->
+    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+      <h2 class="section-title" style="font-size: 30px;">03. INTELLIGENT AUTOMATION</h2>
+    </div>
+    <div class="project-grid" style="margin-bottom: 4rem;">
+      <div class="project-card">
+        <h3 class="project-title">Automated Data Pipeline</h3>
+        <p class="project-desc">End-to-end data processing pipeline for continuous ETL operations, integrating multiple data sources into a centralized analytics data warehouse.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">ETL</span>
+          <span class="tech-pill">PostgreSQL</span>
+        </div>
+        <a href="#" class="project-link">VIEW PROJECT &rarr;</a>
+      </div>
+
+      <div class="project-card">
+        <h3 class="project-title">Workflow Orchestrator</h3>
+        <p class="project-desc">Custom workflow orchestration engine for executing dependent tasks with robust error handling and automated retry mechanisms.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Automation</span>
+          <span class="tech-pill">Scripting</span>
+          <span class="tech-pill">APIs</span>
+        </div>
+        <a href="#" class="project-link">VIEW PROJECT &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2026 Jagan M &mdash; All Rights Reserved. Engineered with precision.
+  </footer>
+
+</body>
+</html>

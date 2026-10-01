@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0; url=index.html#contact">
+  <title>Contact - Jagan M</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-color: #06080d;
+      --bg-gradient: linear-gradient(135deg, #06080d 0%, #0a1128 100%);
+      --text-main: #f0f4f8;
+      --text-muted: #8b9bb4;
+      --accent: #FF7A00;
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --font-sans: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* BACKGROUND GRID PATTERN */
+    .bg-grid {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(6, 8, 13, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .nav-logo {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+    }
+
+    /* PAGE CONTAINER */
+    .page-container {
+      position: relative;
+      z-index: 10;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 5vw 5vw 5vw;
+      text-align: center;
+    }
+
+    /* CONTACT CONTENT */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .page-title {
+      font-size: clamp(40px, 6vw, 90px);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 30px rgba(255,122,0,0.1);
+    }
+    .page-subtitle {
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 300;
+      color: #e2e8f0;
+      max-width: 600px;
+      margin: 0 auto 3rem auto;
+      line-height: 1.5;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-btn {
+      padding: 1.2rem 3rem;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #f0f4f8;
+    }
+    .hero-btn.primary {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .hero-btn.primary:hover {
+      background: rgba(255,122,0,0.1);
+      box-shadow: 0 0 25px rgba(255, 90, 0, 0.15);
+      transform: translateY(-2px);
+    }
+    .hero-btn.secondary:hover {
+      border-color: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--glass-border);
+      padding: 2rem 5vw;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      background: rgba(6, 8, 13, 0.8);
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { gap: 1rem; }
+      .btn-group { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+      .hero-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="bg-grid"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">JAGAN<span>.AI</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#contact" class="active">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div class="eyebrow">/ LET'S CONNECT</div>
+    <h1 class="page-title">LET'S BUILD<br>INTELLIGENT SYSTEMS.</h1>
+    <p class="page-subtitle">Open to AI Engineering, Agentic AI, Generative AI, Computer Vision, Robotics and AI-focused opportunities.</p>
+
+    <div class="btn-group">
+      <a href="mailto:rubamarimuthu2410@gmail.com" class="hero-btn primary">&#x2709; EMAIL ME</a>
+      <a href="https://www.linkedin.com/in/jagan-m-a42457343/" target="_blank" rel="noopener noreferrer" class="hero-btn secondary">IN &#x2197; LINKEDIN</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Jagan M &mdash; All Rights Reserved. Engineered with precision.
+  </footer>
+
+</body>
+</html>

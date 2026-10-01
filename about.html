@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0; url=index.html#about">
+  <title>About - Jagan M</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-color: #06080d;
+      --bg-gradient: linear-gradient(135deg, #06080d 0%, #0a1128 100%);
+      --text-main: #f0f4f8;
+      --text-muted: #8b9bb4;
+      --accent: #FF7A00;
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --font-sans: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+    }
+
+    /* BACKGROUND GRID PATTERN */
+    .bg-grid {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(6, 8, 13, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .nav-logo {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+    }
+
+    /* PAGE CONTAINER */
+    .page-container {
+      position: relative;
+      z-index: 10;
+      padding: 150px 5vw 5vw 5vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* TYPOGRAPHY */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .page-title {
+      font-size: clamp(40px, 6vw, 90px);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.9;
+      margin-bottom: 1rem;
+    }
+    .page-subtitle {
+      font-size: clamp(16px, 2.5vw, 26px);
+      font-weight: 300;
+      color: #e2e8f0;
+      max-width: 900px;
+      margin-bottom: 4rem;
+    }
+
+    /* SECTION CONTAINERS */
+    .content-section {
+      margin-bottom: 6rem;
+    }
+    .section-heading {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 1rem;
+    }
+
+    /* STATS GRID */
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: #fff;
+    }
+
+    /* SKILLS GRID */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+    .skill-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .skill-block h3 {
+      font-size: 18px;
+      color: var(--accent);
+    }
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .pill {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      padding: 0.6rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #e2e8f0;
+    }
+
+    /* EDUCATION / EXPERIENCE CARD */
+    .timeline-card {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .timeline-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--glass-border);
+      padding: 2rem 5vw;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      background: rgba(6, 8, 13, 0.8);
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="bg-grid"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">JAGAN<span>.AI</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="index.html#about" class="active">About</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    
+    <div class="eyebrow">/ ENGINEER PROFILE</div>
+    <h1 class="page-title">ABOUT ME</h1>
+    <p class="page-subtitle">BUILDING AI SYSTEMS THAT MOVE FROM INTENT TO EXECUTION.</p>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-label">BACKGROUND</div>
+        <div class="stat-value">Robotics &amp; Automation</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">FOCUS</div>
+        <div class="stat-value">AI Engineering</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">LOCATION</div>
+        <div class="stat-value">India</div>
+      </div>
+    </div>
+
+    <!-- SKILLS SECTION -->
+    <div class="content-section">
+      <h2 class="section-heading">TECHNICAL CAPABILITIES</h2>
+      <div class="skills-layout">
+        
+        <div class="skill-block">
+          <h3>CORE AI</h3>
+          <div class="skill-pills">
+            <span class="pill">Agentic AI</span>
+            <span class="pill">Generative AI</span>
+            <span class="pill">RAG Architectures</span>
+            <span class="pill">LLM Integration</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <h3>LANGUAGES & FRAMEWORKS</h3>
+          <div class="skill-pills">
+            <span class="pill">Python</span>
+            <span class="pill">FastAPI</span>
+            <span class="pill">PyTorch</span>
+            <span class="pill">OpenCV</span>
+            <span class="pill">C++</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <h3>SYSTEMS & INFRASTRUCTURE</h3>
+          <div class="skill-pills">
+            <span class="pill">Docker</span>
+            <span class="pill">PostgreSQL</span>
+            <span class="pill">Git / CI/CD</span>
+            <span class="pill">Edge AI</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EDUCATION SECTION -->
+    <div class="content-section">
+      <h2 class="section-heading">ACADEMICS</h2>
+      <div class="timeline-card">
+        <h3 class="timeline-title">Bachelor of Engineering</h3>
+        <p class="timeline-desc">Robotics &amp; Automation Engineering</p>
+        <div style="display: flex; gap: 1rem;">
+          <span class="pill" style="border-color: rgba(255,122,0,0.3); color: var(--accent);">2022 &ndash; 2026</span>
+          <span class="pill" style="border-color: rgba(255,122,0,0.3); color: var(--accent);">CGPA: 8.3 / 10</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2026 Jagan M &mdash; All Rights Reserved. Engineered with precision.
+  </footer>
+
+</body>
+</html>
